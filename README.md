@@ -1,5 +1,6 @@
-# macro-micro-model
-Distribution sensitive macro-micro nonwcasting model
+# Simple Macro-Micro Modelling Replication Package Do-Files
+
+This folder contains the full Stata workflow for the replication package. The scripts are designed to be run from the master script.
 
 ## Input files
 
