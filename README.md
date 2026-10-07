@@ -9,6 +9,7 @@ Before the do-file descriptions, this section lists the key external inputs used
 - Core distribution and population inputs (in `github/02-input`):
 
   - `GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD.dta`
+  - **This is the only file that needs to be downloaded. Please rename to exactly as stated above.**
 
     - Source: [Poverty and Inequality Platform: 1000 Binned Global Distribution](https://datacatalog.worldbank.org/search/dataset/0064304/1000-binned-global-distribution)
   - `GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD_jangep.dta`
