@@ -41,7 +41,7 @@ save `pop', replace
 
 
 //Get 2025 distribution
-use "$input\GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD.dta", clear
+use "$input\GlobalDist1000bins_1990_2026_20260922_2021_01_02_PROD.dta", clear
     keep if inrange(year, 2025, 2026)
     keep year code quantile welf pop region_code
     reshape wide welf pop, i(code quantile) j(year)

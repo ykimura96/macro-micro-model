@@ -12,7 +12,7 @@
 * Input:
 * 1. $input\IndustryShareByDecile.dta
 * 2. $input\foodenergy_all.dta
-* 3. $input\GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD.dta
+* 3. $input\GlobalDist1000bins_1990_2026_20260922_2021_01_02_PROD.dta
 * 4. $output\sectoralgrowthdist_clean.dta
 * 5. $output\sectoralgrowthdist.dta
 * 6. $output\dist_price_shock.dta
@@ -208,7 +208,7 @@
         graph export "$output\graphs\figure4.png", replace
 
 * Figure 5: Additional number of extreme poor compared to PIP
-    use "$input\GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD.dta", clear
+    use "$input\GlobalDist1000bins_1990_2026_20260922_2021_01_02_PROD.dta", clear
         keep if year==2025
         sort code quantile
         drop if welf>3
