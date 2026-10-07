@@ -1,4 +1,12 @@
-# Simple Macro-Micro Modelling Replication Package Do-Files
+# Simple Macro-Micro Modelling
+
+This replication package produces poverty projections from a "simple" and scalable macro-micro framework that moves beyond distribution-neutral growth.
+
+The approach allocates growth across welfare percentiles by modeling sectoral employment patterns and sectoral output growth (income effect), and differential exposure to food and energy price shocks (price effect).
+
+It produces country, regional, and global poverty outputs plus technical-note figures and tables.
+
+# Replication Package Do-Files
 
 This folder contains the full Stata workflow for the replication package. The scripts are designed to be run from the master script.
 
@@ -8,10 +16,11 @@ Before the do-file descriptions, this section lists the key external inputs used
 
 - Core distribution and population inputs (in `github/02-input`):
 
-  - `GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD.dta`
+  - `GlobalDist1000bins_1990_2026_20260922_2021_01_02_PROD.dta`
 
+    - **This is the only file that needs to be downloaded. Please rename to exactly as stated above.**
     - Source: [Poverty and Inequality Platform: 1000 Binned Global Distribution](https://datacatalog.worldbank.org/search/dataset/0064304/1000-binned-global-distribution)
-  - `GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD_jangep.dta`
+  - `GlobalDist1000bins_2026_20260922_2021_01_02_PROD_jangep.dta`
 
     - Between the March 2026 and September 2026 updates in PIP, four additional economy-years were added to the PIP database. Hence, this file contains the 1000-distribution data using the 2025 data from the September 2026 vintage and applies the growth rates between 2025 and 2026 from the March 2026 vintage. You can read more about the changes between the March 2026 and September 2026 vintages here: [September 2026 Update to the Poverty and Inequality Platform (PIP)](https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099045009172613939).
   - `UNpop1950-2050_MediumJuly2024.dta`
