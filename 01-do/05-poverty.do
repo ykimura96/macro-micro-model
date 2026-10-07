@@ -18,7 +18,7 @@ Description:
 Input:
 1. $output\sectoralgrowthdist_clean.dta
 2. $output\dist_price_shock.dta
-3. $input\GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD_jangep.dta
+3. $input\GlobalDist1000bins_2026_20260922_2021_01_02_PROD_jangep.dta
 4. $temp\pip_all_povlines.dta
 5. $temp\pip_wb_povlines.dta
 
