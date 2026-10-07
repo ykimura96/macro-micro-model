@@ -48,7 +48,7 @@ tempfile datasofar
 save `datasofar', replace
 
 *2. merge with Jan GEP
-use "$input\GlobalDist1000bins_1981_2050_20260922_2021_01_02_PROD_jangep.dta", clear
+use "$input\GlobalDist1000bins_2026_20260922_2021_01_02_PROD_jangep.dta", clear
 keep if year==2026
 keep code quantile year welf
 ren welf welf_jan_2026
