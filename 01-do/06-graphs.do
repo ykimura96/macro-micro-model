@@ -34,8 +34,8 @@
     #delim ;
     twoway (lpoly share1 perc, degree(2) bwidth(12)) 
     (lpoly share2 perc, degree(2) bwidth(12)) (lpoly share3 perc, degree(2) bwidth(12)) if code=="BRA",
-    legend(order(1 "Agriculture" 2 "Industry" 3 "Services") row(1) pos(6) size(vsmall)) 
-    title("Brazil (2024)") ytitle("Share of population in sector") xtitle("Welfare percentile")
+    legend(order(1 "Agriculture" 2 "Industry" 3 "Services") row(1) pos(6) size(medium)) 
+    title("Brazil (2024)") ytitle("Share of population in sector", size(medlarge) ) xtitle("Welfare percentile")
     xsize(60) ysize(48) ;
     #delim cr
     graph export "$output\graphs\figure1a.png", replace
@@ -43,8 +43,8 @@
     #delim ;
     twoway (lpoly share1 perc, degree(2) bwidth(12)) 
     (lpoly share2 perc, degree(2) bwidth(12)) (lpoly share3 perc, degree(2) bwidth(12)) if code=="IDN",
-    legend(order(1 "Agriculture" 2 "Industry" 3 "Services") row(1) pos(6) size(vsmall)) 
-    title("Indonesia (2025)") ytitle("Share of population in sector") xtitle("Welfare percentile")
+    legend(order(1 "Agriculture" 2 "Industry" 3 "Services") row(1) pos(6) size(medium)) 
+    title("Indonesia (2025)") ytitle("Share of population in sector", size(medlarge) ) xtitle("Welfare percentile")
     xsize(60) ysize(48) ;
     #delim cr
     graph export "$output\graphs\figure1b.png", replace
@@ -88,8 +88,8 @@
     #delim ;
     twoway (lpoly pct_gr_scaled_2026 perc if code=="BRA", degree(2) bwidth(12))
     (lpoly pct_gr_scaled_2026 perc if code=="IDN", degree(2) bwidth(12)),
-    legend(order(1 "Brazil" 2 "Indonesia") row(1) pos(6) size(vsmall)) 
-    ytitle("Growth rate, %") xtitle("Welfare percentile") yscale(range(0 3.5)) ylabel(0(1)3.5)
+    legend(order(1 "Brazil" 2 "Indonesia") row(1) pos(6) size(medium)) 
+    ytitle("Growth rate, %", size(medlarge)) xtitle("Welfare percentile") yscale(range(0 3.5)) ylabel(0(1)3.5)
     xsize(60) ysize(48) ;
     #delim cr
     graph export "$output\graphs\figure2.png", replace
@@ -146,11 +146,12 @@
     (line sectoral_growth_2026 quintile_x if code=="IDN", lcolor(green) lwidth(medthick) yaxis(2)),
     legend(order(1 "Food & Energy Share" 
     2 "Distributional growth 2026" 3 "GDP growth 2026") 
-    symxsize(4) keygap(0.5) pos(6) size(vsmall) row(1))
+    symxsize(4) keygap(0.5) pos(6) size(small) row(1))
     ylabel(0(0.2)1, axis(1)) ylabel(0(1)5, axis(2))
     xlabel(1(1)5)
     xsize(60) ysize(48) 
-    title("Indonesia (2025)") ytitle("Food & Energy Shares") ytitle("Growth rate (2026), %", axis(2)) xtitle("Welfare quintile");
+    title("Indonesia (2025)") ytitle("Food & Energy Shares", size(medlarge)) 
+    ytitle("Growth rate (2026), %", axis(2) size(medlarge)) xtitle("Welfare quintile");
     #delim cr
     graph export "$output\graphs\figure3a.png", replace
 
@@ -161,11 +162,12 @@
     (line sectoral_growth_2026 quintile_x if code=="UGA", lcolor(green) lwidth(medthick) yaxis(2)),
     legend(order(1 "Food & Energy Share" 
     2 "Distributional growth 2026" 3 "GDP growth 2026") 
-    symxsize(4) keygap(0.5) pos(6) size(vsmall) row(1))
+    symxsize(4) keygap(0.5) pos(6) size(small) row(1))
     ylabel(0(0.2)1, axis(1)) ylabel(0(1)5, axis(2))
     xlabel(1(1)5)
     xsize(60) ysize(48) 
-    title("Uganda (2024)") ytitle("Food & Energy Shares") ytitle("Growth rate (2026), %", axis(2)) xtitle("Welfare quintile");
+    title("Uganda (2024)") ytitle("Food & Energy Shares", size(medlarge)) 
+    ytitle("Growth rate (2026), %", axis(2) size(medlarge)) xtitle("Welfare quintile");
     #delim cr
     graph export "$output\graphs\figure3b.png", replace
 
@@ -174,7 +176,7 @@
     use "$output\global_level_poverty.dta", clear
 
     keep if inrange(year, 2023, 2026)
-        foreach x in sect pshock {
+        foreach x in jan sect pshock {
             replace npoor_`x'_300 = npoor_pip_300 if year == 2025
         }
 
@@ -198,11 +200,12 @@
             xlabel(2023(1)2026, angle(45)) yscale(range(800 850))
             ylabel(800(10)850, format(%9.0f)) 
             legend(order(1 "Baseline" 
-                        3 "Pre-war growth projections" 
+                        3 "Pre-conflict growth" 
                         4 "Income shock" 
                         5 "Price shock")
                 size(medium) col(1) pos(2) row(4) ring(0) symxsize(2)) 
-            xtitle("") ytitle("Number of people (millions) in extreme poverty") xsize(60) ysize(48) 
+            xtitle("") ytitle("Number of people (millions) in extreme poverty",size(medium))
+            xsize(60) ysize(48) 
             plotregion(margin(r=8));        
     #delimit cr
         graph export "$output\graphs\figure4.png", replace
@@ -284,14 +287,14 @@
         yscale(range(-45 100) axis(2))
         ylabel(, format(%9.1f) axis(1))
         ylabel(0(20)100, format(%9.0f) axis(2))
-        ytitle("Additional number of poor (millions) vs June GEP", axis(1))
-        ytitle("% in extreme poverty in 2025", axis(2))
+        ytitle("Additional number of poor (millions) vs June GEP", axis(1) size(medsmall))
+        ytitle("% in extreme poverty in 2025", axis(2) size(medsmall)) xtitle(, size(medium))
         /*title("Poverty: Change relative to June GEP scenario (2026)")
         subtitle("$3 line")*/
         legend(order(1 "Income shock"
                     2 "Price shock"
                     3 "Poverty rate")
-                row(1) pos(6) size(small) symxsize(2))
+                row(1) pos(6) size(medlarge) symxsize(2))
         plotregion(style(none))
         xscale(noline)
         xsize(85) ysize(48);
@@ -360,14 +363,14 @@
         yline(0, lcolor(black) lwidth(thin) lpattern(solid))
         yscale(lwidth(vthin) axis(1))
         ylabel(, format(%9.0f) axis(1))
-        ytitle("Growth rate, %", axis(1))
+        ytitle("Growth rate, %", axis(1) size(medium))
         /*title("Poverty: Change relative to June GEP scenario (2026)")
         subtitle("$3 line")*/
         legend(order(1 "Agriculture"
                     2 "Industry"
                     3 "Service"
                     4 "GDP")
-                row(1) pos(6) size(small) symxsize(2))
+                row(1) pos(6) size(medlarge) symxsize(2))
         plotregion(style(none))
         xscale(noline)
         xsize(85) ysize(48);
@@ -425,7 +428,10 @@
     (line sectoral_growth_2026 perc if code=="PAK", lcolor(#4895ef) lwidth(thin))
     (line sectoral_growth_2026 perc if code=="TZA", lcolor(#f66420) lwidth(thin)),
     legend(order(7 "Pakistan" 8 "Tanzania") row(1) pos(6) size(medium)) 
-    ytitle("Growth rate, %") xtitle("Welfare percentile") yscale(range(0.8 3)) ylabel(1 (0.5) 3)
+    text(2.3 0 "Distribution-neutral", placement(e) size(small) color(black))
+    text(1.5 0 "Price shock", placement(e) size(small) color(black))
+    text(1.6 60 "Income shock", placement(e) size(small) color(black))
+    ytitle("Growth rate, %", size(medium)) xtitle("Welfare percentile") yscale(range(0.8 3)) ylabel(1 (0.5) 3)
     xsize(60) ysize(48) ;
     #delim cr
     graph export "$output\graphs\figure7.png", replace
@@ -511,9 +517,10 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             (lpoly s_inc1 perc if incgroup=="Lower middle income", degree(2) bwidth(12) lcolor(red)) 
             (lpoly s_inc1 perc if incgroup=="Upper middle income", degree(2) bwidth(12) lcolor(green)) 
             (lpoly s_inc1 perc if incgroup=="High income", degree(2) bwidth(12) lcolor(orange)),
-            legend(order(1 "Low income" 2 "Lower middle income" 3 "Upper middle income" 4 "High income") size(small) row(1) pos(6) symxsize(2))
-            ytitle("share of employment") title("Agriculture")
-            xtitle("Welfare percentile")  xsize(60) ysize(48)  ;
+            legend(order(1 "Low income" 2 "Lower middle income" 3 "Upper middle income" 4 "High income") 
+            size(small) row(1) pos(6) symxsize(2))
+            ytitle("Share of employment", size(medium)) title("Agriculture")
+            xtitle("Welfare percentile", size(medium))  xsize(60) ysize(48)  ;
     #delimit cr
     graph export "$output\graphs\figureB1a.png", replace
 
@@ -524,8 +531,8 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             (lpoly s_inc2 perc if incgroup=="Upper middle income", degree(2) bwidth(12) lcolor(green)) 
             (lpoly s_inc2 perc if incgroup=="High income", degree(2) bwidth(12) lcolor(orange)),
             legend(order(1 "Low income" 2 "Lower middle income" 3 "Upper middle income" 4 "High income") size(small) row(1) pos(6) symxsize(2))
-            ytitle("share of employment") title("Industry")
-            xtitle("Welfare percentile")  xsize(60) ysize(48)  ;
+            ytitle("Share of employment", size(medium)) title("Industry")
+            xtitle("Welfare percentile", size(medium))  xsize(60) ysize(48)  ;
     #delimit cr
     graph export "$output\graphs\figureB1b.png", replace
 
@@ -536,8 +543,8 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             (lpoly s_inc3 perc if incgroup=="Upper middle income", degree(2) bwidth(12) lcolor(green)) 
             (lpoly s_inc3 perc if incgroup=="High income", degree(2) bwidth(12) lcolor(orange)),
             legend(order(1 "Low income" 2 "Lower middle income" 3 "Upper middle income" 4 "High income") size(small) row(1) pos(6) symxsize(2))
-            ytitle("share of employment") title("Services")
-            xtitle("Welfare percentile")  xsize(60) ysize(48)  ;
+            ytitle("Share of employment", size(medium)) title("Services")
+            xtitle("Welfare percentile", size(medium))  xsize(60) ysize(48)  ;
     #delimit cr
     graph export "$output\graphs\figureB1c.png", replace
 
@@ -548,8 +555,8 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             (lpoly s_inc4 perc if incgroup=="Upper middle income", degree(2) bwidth(12) lcolor(green)) 
             (lpoly s_inc4 perc if incgroup=="High income", degree(2) bwidth(12) lcolor(orange)),
             legend(order(1 "Low income" 2 "Lower middle income" 3 "Upper middle income" 4 "High income") size(small) row(1) pos(6) symxsize(2))
-            ytitle("share of employment") title("Other")
-            xtitle("Welfare percentile")  xsize(60) ysize(48)  ;
+            ytitle("Share of employment", size(medium)) title("Other")
+            xtitle("Welfare percentile", size(medium))  xsize(60) ysize(48)  ;
     #delimit cr
     graph export "$output\graphs\figureB1d.png", replace
 
@@ -600,11 +607,11 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             xlabel(2023(1)2026, angle(45)) yscale(range(1400 1600))
             ylabel(1400(50)1600, format(%9.0f)) 
             legend(order(1 "Baseline" 
-                        3 "Pre-war growth projections" 
+                        3 "Pre-conflict growth" 
                         4 "Income shock" 
                         5 "Price shock")
                 size(medium) col(1) pos(2) row(4) ring(0) symxsize(2)) 
-            xtitle("") ytitle("Number of people (millions)") xsize(60) ysize(48) 
+            xtitle("") ytitle("Number of people (millions)", size(medium)) xsize(60) ysize(48) 
             plotregion(margin(r=10));
         
         #delimit cr
@@ -655,11 +662,11 @@ br incgroup region_code num perc p1 p2 p3 if region_code!="na"
             xlabel(2023(1)2026, angle(45)) yscale(range(3650 3800))
             ylabel(3650(50)3800, format(%9.0f)) 
             legend(order(1 "Baseline" 
-                        3 "Pre-war growth projections" 
+                        3 "Pre-conflict growth" 
                         4 "Income shock" 
                         5 "Price shock")
                 size(medium) col(1) pos(2) row(4) ring(0) symxsize(2)) 
-            xtitle("") ytitle("Number of people (millions)") xsize(60) ysize(48) 
+            xtitle("") ytitle("Number of people (millions)", size(medium)) xsize(60) ysize(48) 
             plotregion(margin(r=10));
         
         #delimit cr
